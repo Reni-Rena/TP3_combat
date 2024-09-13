@@ -357,7 +357,9 @@
 "Assets/Scripts/Camera.cs"
 "Assets/Scripts/CameraFollowCurve.cs"
 "Assets/Scripts/CentreCamera.cs"
+"Assets/Scripts/Enemy.cs"
 "Assets/Scripts/Mouve.cs"
+"Assets/Scripts/PlayerState.cs"
 "Assets/Scripts/SolarLight.cs"
 -langversion:9.0
 
