@@ -4,38 +4,32 @@ using UnityEngine;
 
 public class SolarLight : MonoBehaviour
 {
-
+    public float dayLengthM = 2f;
+    private float dayLengthS;
+    public float timeSpeed = 1f;
     private Light _li;
-    private float x;
-    private float y = 90f;
-    private bool isDay = true;
-    private float dayLightIntensity = 0.5f;
-    private Color dayLightColor = Color.yellow;
-    private float nightLightIntensity = 0.2f;
-    private Color nightLightColor = Color.blue;
+    public Gradient lightColor;
+    public AnimationCurve lightIntensity;
+    private float currentTime = 10f;
 
     void Start()
     {
         _li = GetComponent<Light>();
+        dayLengthS = dayLengthM * 60f;
     }
 
     void Update()
     {
-        x += 1;
-        if (x == 180)
-        {
-            x = 0;
-            if (isDay){
-                isDay = false;
-                _li.intensity = dayLightIntensity;
-                _li.color = dayLightColor;
-            }else{
-                isDay = true;
-                _li.intensity = nightLightIntensity;
-                _li.color = nightLightColor;
-            }
+        currentTime += (Time.deltaTime / dayLengthS) * 24f * timeSpeed;
+
+        if (currentTime >= 24f){
+            currentTime = 0f;
         }
-        Quaternion a = Quaternion.Euler(x, y, 0f);
-        transform.rotation = a;
+
+        float lightAngle = (currentTime / 24f) * 360f - 90f;
+        transform.rotation = Quaternion.Euler(lightAngle, 170f, 0f);
+
+        _li.intensity = lightIntensity.Evaluate(currentTime / 24f);
+        _li.color = lightColor.Evaluate(currentTime / 24f);
     }
 }

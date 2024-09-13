@@ -7,14 +7,18 @@ public class CentreCamera : MonoBehaviour
     public Mouve playMouve;
     private float x = 0f;
     private float y = 1f;
-    private float yMin = -8f;
-    private float yMax = 60f;
-    private float Speed = 3f;
+    public float yMin = -8f;
+    public float yMax = 60f;
+    public float Speed = 3f;
     private const string MOUSEX = "Mouse X";
     private const string MOUSEY = "Mouse Y";
     void Update()
     {
-        transform.position = playMouve.transform.position;
+        Vector3 newPosition = playMouve.transform.position;
+
+        newPosition.y += 1f;
+
+        transform.position = newPosition;
     }
 
     void LateUpdate()

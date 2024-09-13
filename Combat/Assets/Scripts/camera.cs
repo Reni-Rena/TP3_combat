@@ -5,10 +5,10 @@ using UnityEngine;
 public class Camera : MonoBehaviour
 {
     public CentreCamera centreCamera;
-    private float z = 0f;
-    private float zMin = -6f;
-    private float zMax = -2f;
-    private float zoomSpeed = 3f;
+    private float z = -4f;
+    public float zMin = -6f;
+    public float zMax = -2f;
+    public float zoomSpeed = 3f;
     private const string MOUSEWEEL = "Mouse ScrollWheel";
     void Update()
     {
